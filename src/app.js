@@ -14,7 +14,7 @@ app.use(express.json());
 //Routes
 
 app.get('/',(req,res) =>{
-    res.send('Hello from home')
+    res.send('Hello backend')
 })
 app.use('/api/user', require('./routes/users.routes'));
 app.use('/api/buyer', require('./routes/buyers.routes'));
