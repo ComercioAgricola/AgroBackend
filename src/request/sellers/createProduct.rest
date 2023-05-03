@@ -1,0 +1,11 @@
+POST http://localhost:5000/api/seller/create/product/644f2d8f42a73b82fe8b6353
+content-type: application/json
+
+{
+    "name": "Producto 2",
+    "category": "Verdura",
+    "unitSale":"kilo",
+    "price":5000,
+    "urlImg": "url",
+    "description": "es una descripcion"
+}

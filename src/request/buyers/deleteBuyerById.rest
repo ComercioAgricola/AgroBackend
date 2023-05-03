@@ -1,0 +1,1 @@
+DELETE http://localhost:5000/api/buyer/id/642f0faa2bfe31396e2d5754

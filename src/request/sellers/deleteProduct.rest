@@ -1,0 +1,1 @@
+DELETE  http://localhost:5000/api/seller/delete/product/644f2d8f42a73b82fe8b6353/645138405804284299d67aff

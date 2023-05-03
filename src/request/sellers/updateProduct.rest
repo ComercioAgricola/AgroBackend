@@ -1,0 +1,11 @@
+PUT   http://localhost:5000/api/seller/update/product/645138405804284299d67aff
+content-type: application/json
+
+{
+    "name": "Producto N1",
+    "category": "Verdura",
+    "unitSale":"kilo",
+    "price":70000,
+    "urlImg": "url",
+    "description": "es una nueva descripcion"
+}

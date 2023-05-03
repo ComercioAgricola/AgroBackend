@@ -1,0 +1,6 @@
+PUT http://localhost:5000/api/buyer/id/643b5821ea28a31501012750
+content-type: application/json
+
+{
+    "address": "por aqui"
+}
