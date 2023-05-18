@@ -43,7 +43,7 @@ const getTemplate = (name, token) => {
         <h1>Verificación de correo electrónico</h1>
         <p>Hola ${name},</p>
         <p>Gracias por registrarte en nuestro sitio. Para verificar tu correo electrónico, por favor haz clic en el siguiente enlace:</p>
-        <a href="https://agromarketshop.up.railway.app/user/confirm/${token}" target="_blank">Haz click AQUI para verificar tu correo</a>
+        <a href="https://agromarketplace2023.web.app/user/confirm/${token}" target="_blank">Haz click AQUI para verificar tu correo</a>
         <p>Si no has creado una cuenta en nuestro sitio, por favor ignora este mensaje.</p>
         <p>Gracias.</p>
         <p>El equipo de AgroMarketPlace</p>
