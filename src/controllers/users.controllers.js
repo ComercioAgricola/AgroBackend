@@ -73,7 +73,7 @@ module.exports = class BuyersController {
             userVerified.state = 'VERIFIED'
             userVerified.save();
 
-            return res.status(200).redirect('../pages/confirm.html');
+            return res.status(200).json({ success: true, msg:'El correo se a verificado con exito'});
 
         } catch (error) {
             return res.status(404).json({ success: false, msg: 'Error al confirmar el usuario ' + error.message });

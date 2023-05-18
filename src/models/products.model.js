@@ -2,7 +2,6 @@ const mongoose = require('mongoose')
 const { Schema } = mongoose
 
 const ProductSchema = new Schema({
-
     "name": {
         type: String,
         required: [true, "El nombre del producto es obligatorio."]
@@ -48,7 +47,6 @@ const ProductSchema = new Schema({
         type: [Number],
         enum : [1,2,3,4,5],
     }
-    
 });
 
 module.exports = mongoose.model('products', ProductSchema)
