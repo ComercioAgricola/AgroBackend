@@ -34,6 +34,8 @@ module.exports = class SellersController {
         })
       });
 
+      auxProducts = auxProducts.reverse()
+
       res.status(200).json({ success: true, auxProducts });
     } catch (err) {
       res.status(404).json({ message: err.message });
