@@ -35,20 +35,26 @@ module.exports = class BuyersController {
 
       let auxCarProduct = []
 
-      if (buyerFound.cartProducts.length < 1) {
-        buyerFound.cartProducts = buyerFound.cartProducts.concat(productId + "/" + cantidad)
-      } else {
-        buyerFound.cartProducts.forEach(product => {
+
+      if (buyerFound.cartProducts.length >= 1) {
+        buyerFound.cartProducts.map(product => {
           let idAux = product.split("/")[0]
           if (idAux === productId) {
             let cantidadAux = parseFloat(product.split("/")[1]) + parseFloat(cantidad)
             auxCarProduct.push(productId + "/" + cantidadAux)
           } else {
-            auxCarProduct.push(productId + "/" + cantidad);
+            auxCarProduct.push(idAux + "/" + product.split("/")[1]);
           }
         });
-        buyerFound.cartProducts = auxCarProduct;
+
+        if (buyerFound.cartProducts.filter((element) => element.split("/")[0] === productId).length <= 0) {
+          auxCarProduct.push(productId + "/" + cantidad);
+        }
+
+      } else {
+        auxCarProduct.push(productId + "/" + cantidad)
       }
+      buyerFound.cartProducts = auxCarProduct;
       await buyerFound.save()
 
       return res.status(200).json({ success: true, msg: 'El producto se a agregado al carrito' });
@@ -74,7 +80,7 @@ module.exports = class BuyersController {
         console.log(productFound.price * cantidadProduct)
 
         priceTotal = priceTotal + (productFound.price * cantidadProduct)
-        
+
       });
       return res.status(200).json({ success: true, msg: 'El producto se a agregado al carrito' }, priceTotal);
 
