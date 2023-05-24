@@ -46,6 +46,8 @@ module.exports = class BuyersController {
     }
   }
 
+
+
   static async agregarProducto(req, res) {
     try {
       const productId = req.params.idProduct
