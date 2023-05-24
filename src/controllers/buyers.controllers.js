@@ -13,6 +13,30 @@ module.exports = class BuyersController {
     }
   }
 
+  static async getAllProductsCar(req, res) {
+    try {
+
+      const buyerFound = await buyer.findOne({ _id: req.params.idBuyer });
+      const lstProducts = await product.find({});
+      if (buyerFound == null) { return res.status(200).json({ success: false, msg: 'El comprador no existe' }) }
+
+      let productsAux = []
+      buyerFound.cartProducts.map( (productMap) => {
+        lstProducts.map((productAux)=>{
+          if(productMap.split("/")[0] === productAux._id.toString()){
+            let auxPrecio = parseFloat(productAux.price) * parseFloat(productMap.split("/")[1])
+            productAux.price = auxPrecio;
+            productsAux.push(productAux)
+          }
+        })
+      });
+
+      res.status(200).json({ success: true,productsCar: productsAux });
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
+
   static async getBuyerById(request, response) {
     try {
       const result = await buyer.findOne({ _id: request.params.id });
