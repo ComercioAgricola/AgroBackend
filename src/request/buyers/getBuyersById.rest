@@ -1,1 +1,1 @@
-GET http://localhost:80/api/buyer/id/6465a5d4f3802637b94eecb4
+GET http://agrobackend-production.up.railway.app/api/buyer/id/6465a5d4f3802637b94eecb4

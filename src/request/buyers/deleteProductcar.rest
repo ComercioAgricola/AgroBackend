@@ -1,1 +1,1 @@
-DELETE http://localhost:80/api/buyer/delete/6451bba8930771cb6c5fd862/6465a5d4f3802637b94eecb4
+DELETE http://agrobackend-production.up.railway.app/api/buyer/delete/6451bba8930771cb6c5fd862/6465a5d4f3802637b94eecb4
