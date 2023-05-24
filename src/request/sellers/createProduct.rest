@@ -1,4 +1,4 @@
-POST http://localhost:5000/api/seller/create/product/644f2d8f42a73b82fe8b6353
+POST http://agrobackend-production.up.railway.app/api/seller/create/product/644f2d8f42a73b82fe8b6351
 content-type: application/json
 
 {

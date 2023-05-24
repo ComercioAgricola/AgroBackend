@@ -1,4 +1,4 @@
-PUT   http://localhost:5000/api/seller/update/product/645138405804284299d67aff
+PUT   http://agrobackend-production.up.railway.app/api/seller/update/product/645138405804284299d67aff
 content-type: application/json
 
 {

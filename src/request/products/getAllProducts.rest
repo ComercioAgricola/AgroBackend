@@ -1,1 +1,1 @@
-GET http://localhost:80/api/product/all
+GET http://agrobackend-production.up.railway.app/api/product/all

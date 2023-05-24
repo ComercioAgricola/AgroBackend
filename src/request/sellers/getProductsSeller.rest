@@ -1,1 +1,1 @@
-GET http://localhost:5000/api/seller/all/products/644f2d8f42a73b82fe8b6353
+GET http://agrobackend-production.up.railway.app/api/seller/all/products/644f2d8f42a73b82fe8b6353

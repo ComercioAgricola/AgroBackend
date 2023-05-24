@@ -1,10 +1,10 @@
-POST http://localhost:6239/api/user/signup
+POST http://agrobackend-production.up.railway.app/api/user/signup
 content-type: application/json
 
 {
    "type": "SELLER",
    "name": "karl",
-   "email": "miguelnietoo.08@gmail.com",
+   "email": "miguelnietoox.08@gmail.com",
    "password": "123",
    "telephone": "3118526979",
    "location": "colombia",
