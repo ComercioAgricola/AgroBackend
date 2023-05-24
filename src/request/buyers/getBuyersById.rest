@@ -1,1 +1,1 @@
-GET http://localhost:5000/api/buyer/id/642f0f1e1adb44c7fde1ef55
+GET http://localhost:80/api/buyer/id/6465a5d4f3802637b94eecb4

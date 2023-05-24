@@ -11,9 +11,9 @@ const BuyersSchema = new Schema({
         type: String,
         required: [true, "La direccion es obligatorio."],
     },
-    "cartProducts": [{
-        type: Schema.Types.ObjectId,
-        ref: 'Products.model'
+    "cartProducts":[{
+        type: String,
+        required: [true, "El codgio del producto es obligatorio."]
     }],
     "purchaseHistory": [{
         type: Schema.Types.ObjectId,

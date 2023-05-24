@@ -14,8 +14,6 @@ module.exports = class SellersController {
     }
   }
 
-
-
   static async getAllProductsSeller(req, res) {
     try {
       const idSeller = req.params.id;

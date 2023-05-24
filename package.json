@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --verbose",
     "start": "nodemon src/index.js"
   },
   "keywords": [],
@@ -18,9 +18,14 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
     "nodemailer": "^6.9.1",
+    "supertest": "^6.3.3",
     "uuid": "^9.0.0"
   },
+  "jest": {
+    "testEnvironment": "node"
+  },
   "devDependencies": {
+    "jest": "^29.5.0",
     "nodemon": "^2.0.22"
   }
 }

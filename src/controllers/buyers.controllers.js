@@ -1,10 +1,12 @@
-const Buyer = require("../models/buyers.model")
+const buyer = require("../models/buyers.model")
+const product = require('../models/products.model')
+
 
 module.exports = class BuyersController {
 
   static async getAllBuyers(request, response) {
     try {
-      const result = await Buyer.find({});
+      const result = await buyer.find({});
       response.status(200).json(result);
     } catch (err) {
       response.status(404).json({ message: err.message });
@@ -13,10 +15,102 @@ module.exports = class BuyersController {
 
   static async getBuyerById(request, response) {
     try {
-      const result = await Buyer.findOne({ _id: request.params.id });
+      const result = await buyer.findOne({ _id: request.params.id });
       result != null ? response.status(200).json(result) : response.status(400).json({ mensaje: 'the buyer user does not exist' });
     } catch (err) {
       response.status(404).json({ message: err.message });
+    }
+  }
+
+  static async agregarProducto(req, res) {
+    try {
+      const productId = req.params.idProduct
+      const buyerId = req.params.idBuyer
+      const cantidad = req.params.cantidad
+      const productFound = await product.findById({ _id: productId })
+      const buyerFound = await buyer.findById({ _id: buyerId })
+
+      if (buyerFound == null) { return res.status(200).json({ success: false, msg: 'El comprador no existe' }) }
+      if (productFound == null) { return res.status(200).json({ success: false, msg: 'El producto no existe' }) }
+
+      let auxCarProduct = []
+
+      if (buyerFound.cartProducts.length < 1) {
+        buyerFound.cartProducts = buyerFound.cartProducts.concat(productId + "/" + cantidad)
+      } else {
+        buyerFound.cartProducts.forEach(product => {
+          let idAux = product.split("/")[0]
+          if (idAux === productId) {
+            let cantidadAux = parseFloat(product.split("/")[1]) + parseFloat(cantidad)
+            auxCarProduct.push(productId + "/" + cantidadAux)
+          } else {
+            auxCarProduct.push(productId + "/" + cantidad);
+          }
+        });
+        buyerFound.cartProducts = auxCarProduct;
+      }
+      await buyerFound.save()
+
+      return res.status(200).json({ success: true, msg: 'El producto se a agregado al carrito' });
+
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
+
+  static async totalMountCar(req, res) {
+    try {
+      const buyerId = req.params.idBuyer
+      const buyerFound = await buyer.findById({ _id: buyerId })
+
+      if (buyerFound == null) { return res.status(200).json({ success: false, msg: 'El comprador no existe' }) }
+
+      let priceTotal = 0;
+
+      buyerFound.cartProducts.forEach(async productAux => {
+
+        let cantidadProduct = parseFloat(productAux.split("/")[1])
+        const productFound = await product.findById({ _id: productAux.split("/")[0] })
+        console.log(productFound.price * cantidadProduct)
+
+        priceTotal = priceTotal + (productFound.price * cantidadProduct)
+        
+      });
+      return res.status(200).json({ success: true, msg: 'El producto se a agregado al carrito' }, priceTotal);
+
+    } catch (err) {
+      res.status(404).json({ message: err.message });
+    }
+  }
+
+  static async eliminarProducto(req, res) {
+    try {
+      const productId = req.params.idProduct
+      const buyerId = req.params.idBuyer
+      const productFound = await product.findById({ _id: productId })
+      const buyerFound = await buyer.findById({ _id: buyerId })
+
+
+      if (buyerFound == null) { return res.status(200).json({ success: false, msg: 'El comprador no existe' }) }
+      if (productFound == null) { return res.status(200).json({ success: false, msg: 'El producto no existe' }) }
+
+      let auxCarProduct = []
+
+      buyerFound.cartProducts.forEach(product => {
+        let idAux = product.split("/")[0]
+        if (!(idAux === productId)) {
+          auxCarProduct.push(product)
+        }
+      });
+
+      buyerFound.cartProducts = auxCarProduct;
+      await buyerFound.save()
+
+
+      return res.status(200).json({ success: true, msg: 'El producto se a eliminado del carrito' });
+
+    } catch (err) {
+      res.status(404).json({ message: err.message });
     }
   }
 
@@ -24,7 +118,7 @@ module.exports = class BuyersController {
     try {
       const { name, email, password, telephone } = req.body;
 
-      const newBuyer = new Buyer({
+      const newBuyer = new buyer({
         name: name,
         email: email,
         password: password,
@@ -43,7 +137,7 @@ module.exports = class BuyersController {
     try {
       const email = req.params.email;
       const password = req.params.password;
-      const buyerFound = await Buyer.findOne({ email: email, password: password })
+      const buyerFound = await buyer.findOne({ email: email, password: password })
 
       if (!buyerFound) {
         return res.json({
@@ -65,7 +159,7 @@ module.exports = class BuyersController {
   static async deleteBuyerById(request, response) {
     try {
       const id = request.params.id;
-      await Buyer.deleteOne({ _id: id });
+      await buyer.deleteOne({ _id: id });
       response.status(200).json({ mensaje: 'the buyer was removed' });
     } catch (err) {
       response.status(400).json({ message: err.message });
@@ -77,7 +171,7 @@ module.exports = class BuyersController {
       const id = req.params.id;
       const updateData = req.body;
 
-      const buyer = await Buyer.findOne({ _id: id });
+      const buyer = await buyer.findOne({ _id: id });
 
       if (buyer == null) {
         res.json({
@@ -85,7 +179,7 @@ module.exports = class BuyersController {
         })
 
       } else {
-        await Buyer.updateOne({ _id: id }, updateData);
+        await buyer.updateOne({ _id: id }, updateData);
         res.status(200).json({
           mensaje: "The buyer has been updated"
         });

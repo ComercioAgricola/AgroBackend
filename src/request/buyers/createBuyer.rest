@@ -1,9 +1,0 @@
-POST http://localhost:5000/api/buyer/create
-content-type: application/json
-
-{
-   "name": "karl",
-   "email": "pop@gmail.com",
-   "password": "123",
-   "telephone": "3118526979"
-}

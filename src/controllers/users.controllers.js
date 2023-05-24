@@ -146,7 +146,7 @@ module.exports = class BuyersController {
             const id = req.params.id;
             const updateData = req.body;
 
-            const buyer = await Buyer.findOne({ _id: id });
+            const buyer = await buyer.findOne({ _id: id });
 
             if (buyer == null) {
                 res.json({
@@ -154,7 +154,7 @@ module.exports = class BuyersController {
                 })
 
             } else {
-                await Buyer.updateOne({ _id: id }, updateData);
+                await buyer.updateOne({ _id: id }, updateData);
                 res.status(200).json({
                     mensaje: "The buyer has been updated"
                 });
@@ -165,3 +165,4 @@ module.exports = class BuyersController {
     }
 
 }
+

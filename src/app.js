@@ -13,9 +13,6 @@ app.use(express.json());
 
 //Routes
 
-app.get('/',(req,res) =>{
-    res.send('Hello ximena')
-})
 app.use('/api/user', require('./routes/users.routes'));
 app.use('/api/buyer', require('./routes/buyers.routes'));
 app.use('/api/seller', require('./routes/sellers.routes'));

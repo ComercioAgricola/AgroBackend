@@ -1,5 +1,5 @@
 require('dotenv').config();
-console.log("HOLA")
+
 const app = require('./app');
 require('./database');
 
