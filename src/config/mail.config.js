@@ -34,7 +34,8 @@ const sendEmail = async (email, subject, html) => {
 }
 
 const getTemplate = (name, token) => {
-    return`
+    return
+    `
     <head>
         <meta charset="UTF-8">
         <title>Verificación de correo electrónico</title>
