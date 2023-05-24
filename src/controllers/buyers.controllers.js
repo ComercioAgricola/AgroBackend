@@ -50,14 +50,13 @@ module.exports = class BuyersController {
         if (buyerFound.cartProducts.filter((element) => element.split("/")[0] === productId).length <= 0) {
           auxCarProduct.push(productId + "/" + cantidad);
         }
-
       } else {
         auxCarProduct.push(productId + "/" + cantidad)
       }
       buyerFound.cartProducts = auxCarProduct;
       await buyerFound.save()
 
-      return res.status(200).json({ success: true, msg: 'El producto se a agregado al carrito' });
+      return res.status(200).json({ success: true, msg: 'El producto se a agregado al carrito', productsCar: auxCarProduct });
 
     } catch (err) {
       res.status(404).json({ message: err.message });
