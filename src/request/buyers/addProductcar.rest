@@ -1,1 +1,1 @@
-POST http://localhost:80/api/buyer/addcar/64525fbf3302fe9695906f88/6465a5d4f3802637b94eecb4/20.5
+POST http://agrobackend-production.up.railway.app/api/buyer/addcar/6451bba8930771cb6c5fd862/646e8ed025dccde76477e052/20.5
