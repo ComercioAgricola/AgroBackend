@@ -25,7 +25,8 @@ const sendEmail = async (email, subject, html) => {
             from: `"AgroMarketPlace" <${mail.user}>`, // sender address
             to: email, // list of receivers
             subject, // Subject line
-            text: html, // html body
+            text: "",
+            html, // html body
         });
     } catch (error) {
         console.log('Algo salio mal al enviar el email : ', error)
